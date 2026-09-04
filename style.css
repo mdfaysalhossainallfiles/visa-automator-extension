@@ -1,0 +1,596 @@
+/* ============================================================
+   Visa Premium Automator — Styling v2.0 (OTP System)
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* WIDGET CONTAINER */
+#visa-qa-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 420px;
+    max-height: 90vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(59, 130, 246, 0.1);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #e2e8f0;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+#visa-qa-widget.dragging {
+    transition: none;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 50px rgba(59, 130, 246, 0.2);
+}
+
+/* HEADER */
+#visa-qa-header {
+    background: linear-gradient(90deg, #3b82f6 0%, #6366f1 100%);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+    user-select: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#visa-qa-header:active {
+    cursor: grabbing;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.logo svg {
+    width: 100%;
+    height: 100%;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: white;
+}
+
+.brand-sub {
+    font-weight: 500;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 24px;
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+/* BODY */
+#visa-qa-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+#visa-qa-body::-webkit-scrollbar {
+    width: 6px;
+}
+
+#visa-qa-body::-webkit-scrollbar-track {
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 3px;
+}
+
+#visa-qa-body::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.4);
+    border-radius: 3px;
+}
+
+#visa-qa-body::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.6);
+}
+
+/* FIELDS */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.visa-qa-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #cbd5e1;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.req {
+    font-size: 10px;
+    color: #94a3b8;
+    font-weight: 400;
+    text-transform: none;
+    margin-left: 4px;
+}
+
+.visa-qa-input,
+.visa-qa-select {
+    background: rgba(2, 8, 23, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    padding: 9px 12px;
+    color: #e2e8f0;
+    font-size: 13px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.visa-qa-input:focus,
+.visa-qa-select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    background: rgba(59, 130, 246, 0.1);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.visa-qa-input::placeholder {
+    color: #64748b;
+}
+
+.visa-qa-input::-webkit-outer-spin-button,
+.visa-qa-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.visa-qa-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* PASS WRAP (Password field with toggle) */
+.pass-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    position: relative;
+}
+
+.pass-wrap .visa-qa-input {
+    flex: 1;
+    border-radius: 8px 0 0 8px;
+}
+
+.eye {
+    background: rgba(59, 130, 246, 0.3);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    color: #cbd5e1;
+    padding: 9px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.eye:hover {
+    background: rgba(59, 130, 246, 0.5);
+    color: #e2e8f0;
+}
+
+/* OTP SECTION - HIGHLIGHT */
+#otp-section {
+    background: rgba(59, 130, 246, 0.1);
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 4px;
+}
+
+#otp-section.verified {
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.4);
+}
+
+.otp-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.otp-code-box {
+    background: rgba(2, 8, 23, 0.8);
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    color: #60a5fa;
+    text-align: center;
+    flex: 1;
+}
+
+.otp-timer {
+    font-size: 11px;
+    color: #f97316;
+    font-weight: 600;
+}
+
+.otp-timer.warning {
+    color: #ef4444;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.otp-copy-btn {
+    background: rgba(59, 130, 246, 0.4);
+    border: 1px solid rgba(59, 130, 246, 0.5);
+    border-radius: 6px;
+    color: #cbd5e1;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.otp-copy-btn:hover {
+    background: rgba(59, 130, 246, 0.6);
+    color: #e2e8f0;
+}
+
+.otp-copy-btn.copied {
+    background: rgba(34, 197, 94, 0.4);
+    color: #86efac;
+}
+
+.otp-verify-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.otp-input-group {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+#visa-in-otp-verify {
+    flex: 1;
+    padding: 9px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.verify-otp-btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+    border: none;
+    color: white;
+    padding: 9px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.verify-otp-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.verify-otp-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.otp-status {
+    font-size: 11px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.otp-status.success {
+    background: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+}
+
+.otp-status.error {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+}
+
+.otp-status.info {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+}
+
+/* DROPZONE */
+.dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px;
+    border: 2px dashed rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: rgba(59, 130, 246, 0.05);
+}
+
+.dropzone:hover {
+    border-color: rgba(59, 130, 246, 0.6);
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.dropzone.has-file {
+    border-color: rgba(34, 197, 94, 0.4);
+    background: rgba(34, 197, 94, 0.05);
+}
+
+.dz-icon {
+    font-size: 24px;
+}
+
+.dz-text {
+    font-size: 12px;
+    font-weight: 500;
+    color: #cbd5e1;
+}
+
+.dropzone.has-file .dz-text {
+    color: #86efac;
+}
+
+/* PDF LIST */
+.pdf-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pdf-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(2, 8, 23, 0.6);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.pdf-badge {
+    background: rgba(59, 130, 246, 0.3);
+    color: #93c5fd;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.pdf-fname {
+    flex: 1;
+    color: #cbd5e1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pdf-size {
+    color: #64748b;
+    font-size: 11px;
+}
+
+.pdf-remove {
+    background: rgba(239, 68, 68, 0.3);
+    border: none;
+    color: #fca5a5;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.pdf-remove:hover {
+    background: rgba(239, 68, 68, 0.5);
+    color: #fff;
+}
+
+/* ACTIONS */
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.visa-qa-btn {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.4) 0%, rgba(99, 102, 241, 0.4) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.4);
+    color: #e2e8f0;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+.visa-qa-btn:hover {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.6) 0%, rgba(99, 102, 241, 0.6) 100%);
+    border-color: rgba(59, 130, 246, 0.7);
+    transform: translateY(-2px);
+}
+
+.visa-qa-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.visa-qa-btn.step1 { border-color: rgba(96, 165, 250, 0.5); }
+.visa-qa-btn.step2 { border-color: rgba(168, 85, 247, 0.5); }
+.visa-qa-btn.step3 { border-color: rgba(34, 197, 94, 0.5); }
+.visa-qa-btn.step4 { border-color: rgba(249, 115, 22, 0.5); }
+
+.visa-qa-btn.step1:hover { background: linear-gradient(135deg, rgba(96, 165, 250, 0.6) 0%, rgba(59, 130, 246, 0.6) 100%); }
+.visa-qa-btn.step2:hover { background: linear-gradient(135deg, rgba(168, 85, 247, 0.6) 0%, rgba(139, 92, 246, 0.6) 100%); }
+.visa-qa-btn.step3:hover { background: linear-gradient(135deg, rgba(34, 197, 94, 0.6) 0%, rgba(16, 185, 129, 0.6) 100%); }
+.visa-qa-btn.step4:hover { background: linear-gradient(135deg, rgba(249, 115, 22, 0.6) 0%, rgba(234, 88, 12, 0.6) 100%); }
+
+.ic {
+    font-size: 16px;
+}
+
+.lbl {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+/* STATUS */
+.visa-qa-status {
+    display: none;
+    font-size: 11px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+    animation: slideIn 0.3s ease;
+}
+
+.visa-qa-status.show {
+    display: block;
+}
+
+.visa-qa-status.info {
+    background: rgba(59, 130, 246, 0.2);
+    color: #93c5fd;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.visa-qa-status.success {
+    background: rgba(34, 197, 94, 0.2);
+    color: #86efac;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.visa-qa-status.error {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+    #visa-qa-widget {
+        width: calc(100vw - 20px);
+        max-width: 420px;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    .row {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        grid-template-columns: 1fr;
+    }
+}
