@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Visa Premium Automator",
+  "version": "9.0",
+  "description": "Enterprise floating panel for Visa automation with OTP verification.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Click to Open/Close Premium UI",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "style.css"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "https://*.workers.dev/*"
+  ]
+}
